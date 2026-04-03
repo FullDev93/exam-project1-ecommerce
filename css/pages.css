@@ -1,0 +1,14 @@
+body[data-page="home"] .page-accent,
+body[data-page="product"] .page-accent,
+body[data-page="login"] .page-accent,
+body[data-page="register"] .page-accent,
+body[data-page="cart"] .page-accent,
+body[data-page="checkout"] .page-accent,
+body[data-page="success"] .page-accent {
+  color: var(--color-accent);
+}
+
+.page-grid {
+  display: grid;
+  gap: 1.5rem;
+}

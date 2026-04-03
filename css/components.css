@@ -1,0 +1,26 @@
+.page-shell {
+  min-height: 100vh;
+}
+
+.page-header {
+  padding: 1.5rem 0 0;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  padding: 1.5rem;
+}
+
+.section-title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.section-copy {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
