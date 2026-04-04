@@ -1,9 +1,58 @@
 .page-shell {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.page-header {
-  padding: 1.5rem 0 0;
+.container {
+  width: min(calc(100% - 2rem), var(--max-width));
+  margin: 0 auto;
+}
+
+.site-header {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.site-logo {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.site-nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  color: var(--color-text);
+}
+
+.site-nav a[aria-current='page'] {
+  color: var(--color-accent);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+.site-footer {
+  margin-top: auto;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.site-footer p {
+  margin: 0;
+  color: var(--color-muted);
 }
 
 .card {
