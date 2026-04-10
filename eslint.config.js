@@ -13,8 +13,18 @@ export default [
     },
   },
   {
+    files: ['js/config.js', 'js/api.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+      },
+    },
+  },
+  {
     files: ['**/*.js'],
-    ignores: ['eslint.config.js'],
+    ignores: ['eslint.config.js', 'js/config.js', 'js/api.js'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'script',

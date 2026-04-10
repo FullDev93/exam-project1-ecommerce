@@ -1,6 +1,1 @@
-window.App = window.App || {};
-
-window.App.config = {
-  currency: 'SAR',
-  apiBaseUrl: '/api',
-};
+export const API_BASE_URL = 'https://v2.api.noroff.dev';
