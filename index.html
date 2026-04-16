@@ -24,10 +24,21 @@
           <nav class="site-nav" aria-label="Main navigation">
             <a href="./index.html" aria-current="page">Home</a>
             <a href="./product/index.html">Product</a>
-            <a href="./cart/index.html">Cart</a>
             <a href="./checkout/index.html">Checkout</a>
-            <a href="./account/login.html">Login</a>
-            <a href="./account/register.html">Register</a>
+
+            <div class="nav-logged-out">
+              <a href="./account/login.html" data-nav-login>Login</a>
+              <a href="./account/register.html">Register</a>
+            </div>
+
+            <div class="nav-logged-in" hidden>
+              <span data-nav-username></span>
+              <a href="./cart/index.html" class="nav-cart">
+                Cart
+                <span class="badge" data-cart-count hidden></span>
+              </a>
+              <button type="button" data-nav-logout>Logout</button>
+            </div>
           </nav>
         </div>
       </header>
