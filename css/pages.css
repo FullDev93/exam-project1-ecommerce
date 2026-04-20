@@ -38,6 +38,7 @@
   background-position: center;
   background-size: cover;
   opacity: 0;
+  pointer-events: none;
   transition: opacity var(--transition-slow);
 }
 
@@ -55,6 +56,7 @@
 
 .carousel-slide.is-active {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .carousel-content {

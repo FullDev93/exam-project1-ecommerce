@@ -23,8 +23,9 @@ window.App.ready(function initHomePage() {
       productGrid.innerHTML = '';
 
       items.forEach(function (product) {
-        var card = document.createElement('article');
+        var card = document.createElement('a');
         card.className = 'product-card';
+        card.href = './product/index.html?id=' + product.id;
 
         var img = document.createElement('img');
         img.src = product.image && product.image.url ? product.image.url : '';
