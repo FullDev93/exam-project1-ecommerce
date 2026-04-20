@@ -150,6 +150,10 @@
   transform: scale(1.1);
 }
 
+.carousel-view-btn {
+  margin-top: var(--space-lg);
+}
+
 .products-section {
   display: grid;
   gap: var(--space-lg);
