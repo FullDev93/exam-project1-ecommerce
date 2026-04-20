@@ -4,95 +4,6 @@ window.App.ui = window.App.ui || {};
 const LOADER_SELECTOR = '[data-ui-loader]';
 const MESSAGE_SELECTOR = '.error-message, .success-message';
 const SUBDIRECTORY_PAGES = ['account', 'cart', 'checkout', 'product', 'success'];
-const UI_STYLE_ID = 'app-ui-styles';
-
-function ensureUiStyles() {
-  if (document.getElementById(UI_STYLE_ID)) {
-    return;
-  }
-
-  const style = document.createElement('style');
-  style.id = UI_STYLE_ID;
-  style.textContent = `
-    .loader[data-ui-loader] {
-      width: 2rem;
-      height: 2rem;
-      border: 3px solid rgba(15, 23, 42, 0.15);
-      border-top-color: #0f172a;
-      border-radius: 999px;
-      animation: app-ui-spin 0.8s linear infinite;
-      margin-top: 0.75rem;
-    }
-
-    .error-message,
-    .success-message {
-      margin-top: 0.75rem;
-      padding: 0.75rem 1rem;
-      border: 1px solid transparent;
-      border-radius: 0.75rem;
-      font-size: 0.95rem;
-      line-height: 1.4;
-    }
-
-    .error-message {
-      color: #991b1b;
-      background-color: #fee2e2;
-      border-color: #fecaca;
-    }
-
-    .success-message {
-      color: #166534;
-      background-color: #dcfce7;
-      border-color: #bbf7d0;
-    }
-
-    .nav-logged-in {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .nav-cart {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .badge[data-cart-count] {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 1.25rem;
-      height: 1.25rem;
-      padding: 0 0.35rem;
-      border-radius: 999px;
-      background-color: #0f172a;
-      color: #ffffff;
-      font-size: 0.75rem;
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    [data-nav-logout] {
-      min-height: 2.25rem;
-      padding: 0.55rem 0.9rem;
-      border: 0;
-      border-radius: 999px;
-      background-color: #0f172a;
-      color: #ffffff;
-      cursor: pointer;
-      font: inherit;
-    }
-
-    @keyframes app-ui-spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  `;
-
-  document.head.appendChild(style);
-}
 
 function getStorage() {
   return window.App.storage && typeof window.App.storage === 'object' ? window.App.storage : null;
@@ -143,6 +54,7 @@ function getCartBadge() {
   return badge;
 }
 
+// Collect the shared navbar elements once so visibility updates stay predictable.
 function getNavbarElements(nav) {
   if (!nav) {
     return {
@@ -181,6 +93,7 @@ function getNavbarElements(nav) {
   };
 }
 
+// Keep logout redirects working from both root pages and nested pages.
 function getHomeUrl() {
   const logoLink = document.querySelector('.site-logo[href]');
 
@@ -198,8 +111,6 @@ window.App.ui.showLoader = function showLoader(container) {
   if (!(container instanceof Element)) {
     return null;
   }
-
-  ensureUiStyles();
 
   const existingLoader = container.querySelector(LOADER_SELECTOR);
 
@@ -243,8 +154,6 @@ window.App.ui.showError = function showError(container, message) {
     return null;
   }
 
-  ensureUiStyles();
-
   window.App.ui.clearMessages(container);
 
   const error = document.createElement('div');
@@ -261,8 +170,6 @@ window.App.ui.showSuccess = function showSuccess(container, message) {
     return null;
   }
 
-  ensureUiStyles();
-
   window.App.ui.clearMessages(container);
 
   const success = document.createElement('div');
@@ -274,9 +181,21 @@ window.App.ui.showSuccess = function showSuccess(container, message) {
   return success;
 };
 
-window.App.ui.updateCartBadge = function updateCartBadge() {
-  ensureUiStyles();
+window.App.ui.setPageTitle = function setPageTitle(title) {
+  if (typeof title !== 'string') {
+    return document.title;
+  }
 
+  const normalizedTitle = title.trim();
+
+  if (normalizedTitle) {
+    document.title = normalizedTitle;
+  }
+
+  return document.title;
+};
+
+window.App.ui.updateCartBadge = function updateCartBadge() {
   const storage = getStorage();
   const badge = getCartBadge();
 
@@ -291,8 +210,6 @@ window.App.ui.updateCartBadge = function updateCartBadge() {
 };
 
 window.App.ui.updateNavbar = function updateNavbar() {
-  ensureUiStyles();
-
   const storage = getStorage();
   const isLoggedIn =
     storage && typeof storage.isLoggedIn === 'function' ? storage.isLoggedIn() : false;

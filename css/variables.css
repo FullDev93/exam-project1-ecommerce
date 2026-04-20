@@ -18,6 +18,10 @@
   --color-success: #16a34a;
   --color-error: #dc2626;
   --color-warning: #f59e0b;
+  --color-success-strong: #166534;
+  --color-error-strong: #991b1b;
+  --color-success-border: #bbf7d0;
+  --color-error-border: #fecaca;
 
   /* ---- Semantic aliases ---- */
   --color-text: var(--color-gray-700);
