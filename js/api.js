@@ -72,3 +72,6 @@ export async function createApiKey(token) {
     },
   });
 }
+
+window.App = window.App || {};
+window.App.api = { getProducts, getProductById, registerUser, loginUser, createApiKey };

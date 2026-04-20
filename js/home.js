@@ -3,37 +3,19 @@ window.App.ready(function initHomePage() {
   window.App.ui.setPageTitle('Home | Mix Shope');
 
   var productGrid = document.getElementById('product-grid');
-  var productsLoader = document.getElementById('products-loader');
 
   if (!productGrid) {
     return;
   }
 
-  // Show loader
-  if (productsLoader) {
-    productsLoader.hidden = false;
-  }
+  window.App.ui.showLoader(productGrid);
 
-  fetch('https://v2.api.noroff.dev/online-shop')
-    .then(function (response) {
-      return response.json().then(function (result) {
-        if (!response.ok) {
-          var message =
-            (result && result.errors && result.errors[0] && result.errors[0].message) ||
-            (result && result.message) ||
-            'API request failed';
-          throw new Error(message);
-        }
-        return result.data;
-      });
-    })
+  window.App.api
+    .getProducts()
     .then(function (products) {
       var items = Array.isArray(products) ? products.slice(0, 12) : [];
 
-      if (productsLoader) {
-        productsLoader.hidden = true;
-      }
-
+      window.App.ui.hideLoader(productGrid);
       productGrid.innerHTML = '';
 
       items.forEach(function (product) {
@@ -84,9 +66,7 @@ window.App.ready(function initHomePage() {
       });
     })
     .catch(function () {
-      if (productsLoader) {
-        productsLoader.hidden = true;
-      }
+      window.App.ui.hideLoader(productGrid);
       productGrid.innerHTML = '';
       window.App.ui.showError(productGrid, 'Failed to load products. Please try again later.');
     });
