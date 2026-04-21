@@ -41,10 +41,10 @@ function validateName(name) {
     return 'Name is required';
   }
 
-  const namePattern = /^[A-Za-z\s]+$/;
+  const namePattern = /^[A-Za-z0-9_]+$/;
 
   if (!namePattern.test(name.trim())) {
-    return 'Name can only contain letters and spaces';
+    return 'Name can only use a-z, A-Z, 0-9, and _';
   }
 
   return null;
