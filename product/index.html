@@ -43,12 +43,135 @@
         </div>
       </header>
 
-      <main class="page-grid">
-        <section class="card">
-          <p class="page-accent">Product Page</p>
-          <h1 class="section-title">Product Page</h1>
-          <p class="section-copy">Use this page to render the selected product information.</p>
-        </section>
+      <main class="product-page">
+        <div class="product-detail-layout">
+          <section class="product-hero" aria-labelledby="product-title">
+            <div class="product-image-section card">
+              <div class="product-image-frame">
+                <span class="product-image-badge">Best Seller</span>
+                <img
+                  src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
+                  alt="Green and white running sneakers"
+                  class="product-main-image"
+                />
+              </div>
+            </div>
+
+            <div class="product-info-section card">
+              <p class="page-accent">Featured Product</p>
+              <h1 id="product-title" class="product-detail-title">AeroFlex Runner Sneakers</h1>
+
+              <div class="product-rating" aria-label="Rated 4.8 out of 5 stars">
+                <div class="rating-stars" aria-hidden="true">
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                  <span class="star filled">★</span>
+                </div>
+                <span class="rating-value">4.8 rating</span>
+                <span class="rating-count">128 reviews</span>
+              </div>
+
+              <div class="product-price-display" aria-label="Pricing details">
+                <span class="product-price-current">$96.00</span>
+                <span class="product-price-original">$120.00</span>
+                <span class="product-price-discount">Save 20%</span>
+              </div>
+
+              <p class="product-description">
+                Lightweight everyday sneakers with breathable mesh panels, cushioned midsoles, and a
+                flexible grip sole designed for city walks, weekend errands, and all-day comfort.
+              </p>
+
+              <div class="product-tags" aria-label="Product tags">
+                <span class="product-tag">Sneakers</span>
+                <span class="product-tag">New Arrival</span>
+                <span class="product-tag">Lightweight</span>
+                <span class="product-tag">Unisex</span>
+              </div>
+
+              <div class="product-actions" aria-label="Product actions">
+                <button type="button" class="btn-primary">Add to Cart</button>
+                <button type="button" class="btn-secondary">Share</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="product-reviews-section" aria-labelledby="reviews-title">
+            <div class="product-reviews-header">
+              <p class="page-accent">Shopper Feedback</p>
+              <h2 id="reviews-title" class="reviews-heading">Customer Reviews</h2>
+            </div>
+
+            <div class="reviews-list">
+              <article class="review-item">
+                <div class="review-header">
+                  <span class="review-username">Maya Thompson</span>
+                  <div class="review-stars" aria-label="5 out of 5 stars">
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                  </div>
+                </div>
+                <p class="review-comment">
+                  The fit was true to size and the cushioning felt great from the first wear. They
+                  look premium without feeling bulky.
+                </p>
+              </article>
+
+              <article class="review-item">
+                <div class="review-header">
+                  <span class="review-username">Omar Hassan</span>
+                  <div class="review-stars" aria-label="4 out of 5 stars">
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star">★</span>
+                  </div>
+                </div>
+                <p class="review-comment">
+                  Clean design, easy to style, and the sole has better grip than I expected. I would
+                  like one more color option, but the overall quality is strong.
+                </p>
+              </article>
+
+              <article class="review-item">
+                <div class="review-header">
+                  <span class="review-username">Elena Cruz</span>
+                  <div class="review-stars" aria-label="5 out of 5 stars">
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                  </div>
+                </div>
+                <p class="review-comment">
+                  These became my daily pair for commuting. They are breathable, supportive, and
+                  still look fresh after a full week of use.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="product-loading-state card" data-loading-state hidden aria-live="polite">
+            <div class="product-state-content">
+              <span class="loader" aria-hidden="true"></span>
+              <p>Loading product details...</p>
+            </div>
+          </section>
+
+          <section class="product-error-state card" data-error-state hidden role="alert">
+            <div class="product-state-content">
+              <h2 class="product-state-title">Something went wrong</h2>
+              <p>We could not load this product right now. Please try again later.</p>
+            </div>
+          </section>
+        </div>
       </main>
 
       <footer class="site-footer">
