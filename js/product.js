@@ -6,6 +6,12 @@ window.App.ready(function initProductPage() {
   const loadingState = document.querySelector('[data-loading-state]');
   const errorState = document.querySelector('[data-error-state]');
   const errorMessage = document.querySelector('[data-error-message]');
+  const addToCartButton = document.querySelector('[data-add-to-cart-button]');
+  const shareButton = document.querySelector('[data-share-button]');
+  const loginRequiredMessage = document.querySelector('[data-login-required-message]');
+  const actionFeedback = document.querySelector('[data-product-action-feedback]');
+  let currentProduct = null;
+  let addToCartResetTimer = null;
 
   const productElements = {
     title: document.querySelector('[data-product-title]'),
@@ -26,6 +32,8 @@ window.App.ready(function initProductPage() {
   if (!productContent || !loadingState || !errorState || !errorMessage) {
     return;
   }
+
+  bindActionEvents();
 
   if (!productId || !productId.trim()) {
     showErrorState('Product not found.');
@@ -60,15 +68,18 @@ window.App.ready(function initProductPage() {
   }
 
   function showLoadingState() {
+    currentProduct = null;
     productContent.hidden = true;
     errorState.hidden = true;
     loadingState.hidden = false;
+    clearActionFeedback();
   }
 
   function showContentState() {
     loadingState.hidden = true;
     errorState.hidden = true;
     productContent.hidden = false;
+    updateActionVisibility();
   }
 
   function showErrorState(message) {
@@ -76,9 +87,12 @@ window.App.ready(function initProductPage() {
     productContent.hidden = true;
     errorState.hidden = false;
     errorMessage.textContent = message;
+    clearActionFeedback();
   }
 
   function renderProduct(product) {
+    currentProduct = product;
+
     const price = toNumber(product.price);
     const discountedPrice = toNumber(product.discountedPrice);
     const hasDiscount =
@@ -116,6 +130,156 @@ window.App.ready(function initProductPage() {
     renderTags(tags);
     renderRating(rating, reviews.length);
     renderReviews(reviews);
+  }
+
+  function bindActionEvents() {
+    if (shareButton) {
+      shareButton.addEventListener('click', handleShareClick);
+    }
+
+    if (addToCartButton) {
+      addToCartButton.addEventListener('click', handleAddToCartClick);
+    }
+  }
+
+  function updateActionVisibility() {
+    const isLoggedIn =
+      window.App.storage && typeof window.App.storage.isLoggedIn === 'function'
+        ? window.App.storage.isLoggedIn()
+        : false;
+
+    if (addToCartButton) {
+      addToCartButton.hidden = !isLoggedIn;
+    }
+
+    if (loginRequiredMessage) {
+      loginRequiredMessage.hidden = isLoggedIn;
+    }
+  }
+
+  async function handleShareClick() {
+    clearActionFeedback();
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: currentProduct?.title || document.title,
+          text: currentProduct?.title || 'Check out this product.',
+          url: window.location.href,
+        });
+        showActionSuccess('Product link shared!');
+        return;
+      }
+
+      if (!navigator.clipboard || typeof navigator.clipboard.writeText !== 'function') {
+        throw new Error('Clipboard is unavailable');
+      }
+
+      await navigator.clipboard.writeText(window.location.href);
+      showActionSuccess('Link copied!');
+    } catch (error) {
+      if (error instanceof Error && error.name === 'AbortError') {
+        return;
+      }
+
+      showActionError('Unable to copy the link.');
+    }
+  }
+
+  function handleAddToCartClick() {
+    clearActionFeedback();
+
+    const isLoggedIn =
+      window.App.storage && typeof window.App.storage.isLoggedIn === 'function'
+        ? window.App.storage.isLoggedIn()
+        : false;
+
+    if (!isLoggedIn) {
+      updateActionVisibility();
+      showActionError('Please log in to add items to your cart.');
+      return;
+    }
+
+    if (
+      !currentProduct ||
+      !window.App.storage ||
+      typeof window.App.storage.addToCart !== 'function'
+    ) {
+      showActionError('Unable to add this product right now.');
+      return;
+    }
+
+    const cartItem = {
+      id: currentProduct.id,
+      title: currentProduct.title,
+      price: currentProduct.price,
+      discountedPrice: currentProduct.discountedPrice,
+      image: currentProduct.image?.url || currentProduct.image || '',
+    };
+
+    const updatedCart = window.App.storage.addToCart(cartItem);
+
+    if (!Array.isArray(updatedCart)) {
+      showActionError('Unable to add this product right now.');
+      return;
+    }
+
+    if (window.App.ui && typeof window.App.ui.updateCartBadge === 'function') {
+      window.App.ui.updateCartBadge();
+    }
+
+    showActionSuccess('Added to cart!');
+    showAddedButtonState();
+  }
+
+  function showAddedButtonState() {
+    if (!addToCartButton) {
+      return;
+    }
+
+    if (addToCartResetTimer) {
+      clearTimeout(addToCartResetTimer);
+    }
+
+    addToCartButton.textContent = 'Added ✓';
+
+    addToCartResetTimer = window.setTimeout(function resetButtonLabel() {
+      addToCartButton.textContent = 'Add to Cart';
+      addToCartResetTimer = null;
+    }, 1600);
+  }
+
+  function showActionSuccess(message) {
+    if (window.App.ui && typeof window.App.ui.showSuccess === 'function') {
+      window.App.ui.showSuccess(actionFeedback, message);
+      return;
+    }
+
+    if (actionFeedback instanceof Element) {
+      actionFeedback.textContent = message;
+    }
+  }
+
+  function showActionError(message) {
+    if (window.App.ui && typeof window.App.ui.showError === 'function') {
+      window.App.ui.showError(actionFeedback, message);
+      return;
+    }
+
+    if (actionFeedback instanceof Element) {
+      actionFeedback.textContent = message;
+    }
+  }
+
+  function clearActionFeedback() {
+    if (window.App.ui && typeof window.App.ui.clearMessages === 'function') {
+      window.App.ui.clearMessages(actionFeedback);
+      return;
+    }
+
+    if (actionFeedback instanceof Element) {
+      actionFeedback.textContent = '';
+    }
   }
 
   function renderTags(tags) {

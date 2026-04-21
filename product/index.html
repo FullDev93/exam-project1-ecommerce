@@ -101,9 +101,17 @@
                 </div>
 
                 <div class="product-actions" aria-label="Product actions">
-                  <button type="button" class="btn-primary">Add to Cart</button>
-                  <button type="button" class="btn-secondary">Share</button>
+                  <button type="button" class="btn-primary" data-add-to-cart-button>
+                    Add to Cart
+                  </button>
+                  <button type="button" class="btn-secondary" data-share-button>Share</button>
                 </div>
+
+                <p data-login-required-message hidden>
+                  Please <a href="../account/login.html">log in</a> to add items to your cart.
+                </p>
+
+                <div data-product-action-feedback aria-live="polite"></div>
               </div>
             </section>
 
