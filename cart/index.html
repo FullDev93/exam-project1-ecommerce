@@ -43,11 +43,51 @@
         </div>
       </header>
 
-      <main class="page-grid">
-        <section class="card">
+      <main class="page-grid cart-page">
+        <section class="card cart-page-header">
           <p class="page-accent">Cart</p>
-          <h1 class="section-title">Cart</h1>
-          <p class="section-copy">Render cart items, totals, and actions here.</p>
+          <h1 class="section-title">Your Shopping Cart</h1>
+          <p class="section-copy">
+            Review your items, adjust quantities, and continue to checkout when ready.
+          </p>
+        </section>
+
+        <section class="cart-layout" aria-labelledby="cart-items-heading">
+          <section class="card cart-items-card" data-cart-content hidden>
+            <div class="cart-section-header">
+              <h2 id="cart-items-heading" class="cart-section-title">Items in your cart</h2>
+              <button type="button" class="btn-secondary cart-clear-button" data-clear-cart>
+                Clear Cart
+              </button>
+            </div>
+
+            <div class="cart-items-list" data-cart-items aria-live="polite"></div>
+          </section>
+
+          <aside class="card cart-summary-card" data-cart-summary hidden>
+            <p class="page-accent">Summary</p>
+            <h2 class="cart-section-title">Order total</h2>
+
+            <div class="cart-summary-row">
+              <span>Total</span>
+              <strong data-cart-total>$0.00</strong>
+            </div>
+
+            <a href="../checkout/index.html" class="btn-primary cart-checkout-link">
+              Proceed to Checkout
+            </a>
+          </aside>
+
+          <section class="card cart-empty-state" data-cart-empty hidden>
+            <div class="cart-empty-content">
+              <p class="page-accent">Cart</p>
+              <h2 class="cart-section-title">Your cart is empty</h2>
+              <p class="section-copy">
+                Add a few products to your cart before heading to checkout.
+              </p>
+              <a href="../index.html" class="btn-primary">Browse Products</a>
+            </div>
+          </section>
         </section>
       </main>
 
