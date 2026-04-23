@@ -32,7 +32,7 @@
 
             <div class="nav-logged-in" hidden>
               <span data-nav-username></span>
-              <a href="../cart/index.html" class="nav-cart">
+              <a href="../cart/index.html" class="nav-cart" aria-label="Cart">
                 Cart
                 <span class="badge" data-cart-count hidden></span>
               </a>
@@ -58,7 +58,8 @@
                 id="login-email"
                 name="email"
                 class="input-field"
-                autocomplete="email"
+                autocomplete="username"
+                required
                 placeholder="name@stud.noroff.no"
               />
             </div>
@@ -71,13 +72,19 @@
                 name="password"
                 class="input-field"
                 autocomplete="current-password"
+                required
                 placeholder="Enter your password"
               />
             </div>
 
             <button type="submit" class="btn-primary">Log In</button>
 
-            <div data-login-feedback aria-live="polite"></div>
+            <div
+              id="login-form-feedback"
+              data-login-feedback
+              role="status"
+              aria-live="polite"
+            ></div>
           </form>
 
           <p class="section-copy">

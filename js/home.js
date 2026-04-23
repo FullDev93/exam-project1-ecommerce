@@ -23,13 +23,15 @@ window.App.ready(function initHomePage() {
       productGrid.innerHTML = '';
 
       items.forEach(function (product) {
+        var title = getProductTitle(product);
         var card = document.createElement('a');
         card.className = 'product-card';
         card.href = './product/index.html?id=' + product.id;
 
         var img = document.createElement('img');
         img.src = product.image && product.image.url ? product.image.url : '';
-        img.alt = product.image && product.image.alt ? product.image.alt : product.title;
+        img.alt = getProductImageAlt(product, title);
+        img.loading = 'lazy';
 
         var imageWrapper = document.createElement('div');
         imageWrapper.className = 'product-image-wrapper';
@@ -37,7 +39,7 @@ window.App.ready(function initHomePage() {
 
         var titleEl = document.createElement('h3');
         titleEl.className = 'product-title';
-        titleEl.textContent = product.title;
+        titleEl.textContent = title;
 
         var hasDiscount =
           typeof product.discountedPrice === 'number' &&
@@ -128,16 +130,27 @@ window.App.ready(function initHomePage() {
     var slides = carouselSlides.querySelectorAll('.carousel-slide');
     var dots = document.querySelectorAll('.indicator');
 
+    dots.forEach(function setInitialIndicatorState(dot, index) {
+      if (index === currentIndex) {
+        dot.setAttribute('aria-current', 'true');
+        return;
+      }
+
+      dot.removeAttribute('aria-current');
+    });
+
     function goTo(index) {
       slides[currentIndex].classList.remove('is-active');
       slides[currentIndex].setAttribute('aria-hidden', 'true');
       dots[currentIndex].classList.remove('active');
+      dots[currentIndex].removeAttribute('aria-current');
 
       currentIndex = (index + slides.length) % slides.length;
 
       slides[currentIndex].classList.add('is-active');
       slides[currentIndex].removeAttribute('aria-hidden');
       dots[currentIndex].classList.add('active');
+      dots[currentIndex].setAttribute('aria-current', 'true');
     }
 
     if (prevBtn) {
@@ -157,5 +170,19 @@ window.App.ready(function initHomePage() {
         goTo(i);
       });
     });
+  }
+
+  function getProductTitle(product) {
+    return typeof product?.title === 'string' && product.title.trim()
+      ? product.title.trim()
+      : 'Product';
+  }
+
+  function getProductImageAlt(product, title) {
+    if (product?.image && typeof product.image.alt === 'string' && product.image.alt.trim()) {
+      return product.image.alt.trim();
+    }
+
+    return title ? title + ' product image' : 'Product image';
   }
 });

@@ -104,14 +104,17 @@
 }
 
 .input-error,
-.input-field.input-error {
+.input-field.input-error,
+.input-field[aria-invalid='true'] {
   border-color: var(--color-error);
 }
 
 .input-error:focus,
 .input-error:focus-visible,
 .input-field.input-error:focus,
-.input-field.input-error:focus-visible {
+.input-field.input-error:focus-visible,
+.input-field[aria-invalid='true']:focus,
+.input-field[aria-invalid='true']:focus-visible {
   box-shadow: 0 0 0 4px var(--color-error-ring);
 }
 
@@ -121,6 +124,12 @@
   color: var(--color-error);
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
+}
+
+.form-group small {
+  display: block;
+  margin-top: var(--space-xs);
+  color: var(--color-text-muted);
 }
 
 .card {

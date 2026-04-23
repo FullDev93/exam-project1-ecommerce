@@ -313,6 +313,7 @@ window.App.ready(function initProductPage() {
       productElements.ratingStars.appendChild(star);
     }
 
+    productElements.rating.setAttribute('role', 'img');
     productElements.rating.setAttribute(
       'aria-label',
       `Rated ${safeRating.toFixed(1)} out of 5 stars`,
@@ -351,6 +352,7 @@ window.App.ready(function initProductPage() {
 
       const reviewStars = document.createElement('div');
       reviewStars.className = 'review-stars';
+      reviewStars.setAttribute('role', 'img');
 
       const reviewRating = normalizeRating(review?.rating);
       reviewStars.setAttribute('aria-label', `${reviewRating} out of 5 stars`);
@@ -419,7 +421,7 @@ window.App.ready(function initProductPage() {
       }
     }
 
-    return isNonEmptyString(product?.title) ? product.title : 'Product image';
+    return isNonEmptyString(product?.title) ? `${product.title} product image` : 'Product image';
   }
 
   function getDescription(product) {

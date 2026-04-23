@@ -31,7 +31,7 @@
 
             <div class="nav-logged-in" hidden>
               <span data-nav-username></span>
-              <a href="../cart/index.html" class="nav-cart">
+              <a href="../cart/index.html" class="nav-cart" aria-label="Cart">
                 Cart
                 <span class="badge" data-cart-count hidden></span>
               </a>
@@ -66,6 +66,7 @@
                   name="fullName"
                   class="input-field"
                   autocomplete="name"
+                  required
                 />
               </div>
 
@@ -77,6 +78,7 @@
                   name="streetAddress"
                   class="input-field"
                   autocomplete="street-address"
+                  required
                 />
               </div>
 
@@ -89,6 +91,7 @@
                     name="city"
                     class="input-field"
                     autocomplete="address-level2"
+                    required
                   />
                 </div>
 
@@ -100,6 +103,8 @@
                     name="postalCode"
                     class="input-field"
                     autocomplete="postal-code"
+                    inputmode="numeric"
+                    required
                   />
                 </div>
               </div>
@@ -112,6 +117,7 @@
                   name="country"
                   class="input-field"
                   autocomplete="country-name"
+                  required
                 />
               </div>
 
@@ -147,6 +153,7 @@
                       class="input-field"
                       placeholder="1234 5678 9012 3456"
                       autocomplete="cc-number"
+                      inputmode="numeric"
                     />
                   </div>
 
@@ -160,6 +167,7 @@
                         class="input-field"
                         placeholder="MM/YY"
                         autocomplete="cc-exp"
+                        inputmode="numeric"
                       />
                     </div>
 
@@ -172,6 +180,7 @@
                         class="input-field"
                         placeholder="123"
                         autocomplete="cc-csc"
+                        inputmode="numeric"
                       />
                     </div>
                   </div>
@@ -192,7 +201,12 @@
                 <h2 class="checkout-section-title">Order Summary</h2>
               </div>
 
-              <div class="checkout-summary-items" data-checkout-items aria-live="polite"></div>
+              <div
+                class="checkout-summary-items"
+                data-checkout-items
+                role="list"
+                aria-live="polite"
+              ></div>
 
               <div class="checkout-summary-total-row">
                 <span>Total</span>

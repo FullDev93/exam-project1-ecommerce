@@ -58,12 +58,25 @@ function showFieldError(inputElement, message) {
   clearFieldError(inputElement);
 
   inputElement.classList.add('input-error');
+  inputElement.setAttribute('aria-invalid', 'true');
 
   const errorElement = document.createElement('span');
   errorElement.className = 'error-text';
+  errorElement.id = getFieldErrorId(inputElement);
+  errorElement.setAttribute('role', 'alert');
+  errorElement.dataset.errorFor = getFieldErrorKey(inputElement);
   errorElement.textContent = message;
 
-  inputElement.insertAdjacentElement('afterend', errorElement);
+  const formGroup = inputElement.closest('.form-group');
+  const helperText = formGroup ? formGroup.querySelector('small') : null;
+
+  if (helperText) {
+    helperText.insertAdjacentElement('afterend', errorElement);
+  } else {
+    inputElement.insertAdjacentElement('afterend', errorElement);
+  }
+
+  addDescribedById(inputElement, errorElement.id);
 }
 
 function clearFieldError(inputElement) {
@@ -72,11 +85,15 @@ function clearFieldError(inputElement) {
   }
 
   inputElement.classList.remove('input-error');
+  inputElement.removeAttribute('aria-invalid');
 
-  const nextElement = inputElement.nextElementSibling;
+  const formGroup = inputElement.closest('.form-group');
+  const errorSelector = `.error-text[data-error-for="${getFieldErrorKey(inputElement)}"]`;
+  const errorElement = formGroup ? formGroup.querySelector(errorSelector) : null;
 
-  if (nextElement && nextElement.classList.contains('error-text')) {
-    nextElement.remove();
+  if (errorElement) {
+    removeDescribedById(inputElement, errorElement.id);
+    errorElement.remove();
   }
 }
 
@@ -90,6 +107,55 @@ function clearAllErrors(formElement) {
   inputsWithErrors.forEach((input) => {
     clearFieldError(input);
   });
+}
+
+function getFieldErrorKey(inputElement) {
+  if (inputElement.id) {
+    return inputElement.id;
+  }
+
+  if (inputElement.name) {
+    return inputElement.name;
+  }
+
+  return 'field';
+}
+
+function getFieldErrorId(inputElement) {
+  return `${getFieldErrorKey(inputElement)}-error`;
+}
+
+function addDescribedById(inputElement, id) {
+  if (!id) {
+    return;
+  }
+
+  const describedBy = (inputElement.getAttribute('aria-describedby') || '')
+    .split(/\s+/)
+    .filter(Boolean);
+
+  if (!describedBy.includes(id)) {
+    describedBy.push(id);
+    inputElement.setAttribute('aria-describedby', describedBy.join(' '));
+  }
+}
+
+function removeDescribedById(inputElement, id) {
+  if (!id) {
+    return;
+  }
+
+  const describedBy = (inputElement.getAttribute('aria-describedby') || '')
+    .split(/\s+/)
+    .filter(Boolean)
+    .filter((token) => token !== id);
+
+  if (describedBy.length === 0) {
+    inputElement.removeAttribute('aria-describedby');
+    return;
+  }
+
+  inputElement.setAttribute('aria-describedby', describedBy.join(' '));
 }
 
 window.App.validation = {

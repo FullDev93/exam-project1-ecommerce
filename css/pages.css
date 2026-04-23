@@ -117,6 +117,13 @@
   transform: translateY(-50%) scale(1.04);
 }
 
+.carousel-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px var(--color-primary-ring),
+    var(--shadow-sm);
+}
+
 .carousel-btn.prev {
   left: var(--space-lg);
 }
@@ -150,6 +157,11 @@
 .indicator:hover {
   background-color: var(--color-white);
   transform: scale(1.1);
+}
+
+.indicator:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--color-primary-ring);
 }
 
 .carousel-view-btn {
@@ -204,6 +216,13 @@
   color: var(--color-primary-dark);
 }
 
+.site-logo:focus-visible {
+  color: var(--color-primary-dark);
+  outline: none;
+  box-shadow: 0 0 0 4px var(--color-primary-ring);
+  border-radius: var(--radius-sm);
+}
+
 .site-nav {
   display: flex;
   align-items: center;
@@ -253,6 +272,11 @@
 .site-nav a:hover {
   color: var(--color-secondary);
   background-color: var(--color-secondary-soft);
+}
+
+.site-nav a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--color-primary-ring);
 }
 
 .site-nav a[aria-current='page'] {
@@ -588,6 +612,11 @@
 
 .checkout-payment-option input {
   margin: 0;
+}
+
+.checkout-payment-option:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px var(--color-primary-ring);
 }
 
 .checkout-submit-button {

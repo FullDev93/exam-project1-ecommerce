@@ -152,7 +152,7 @@ window.App.ready(function initCheckoutPage() {
         const lineTotal = unitPrice * quantity;
 
         return `
-          <article class="checkout-summary-item">
+          <article class="checkout-summary-item" role="listitem">
             <div class="checkout-summary-item-main">
               <h3 class="checkout-summary-item-title">${escapeHtml(getItemTitle(item))}</h3>
               <p class="checkout-summary-item-meta">Quantity: ${quantity}</p>
@@ -175,6 +175,9 @@ window.App.ready(function initCheckoutPage() {
     const showCardFields = selectedOption ? selectedOption.value === 'credit-card' : false;
 
     cardFields.hidden = !showCardFields;
+    cardFields.querySelectorAll('input').forEach(function toggleCardFieldState(input) {
+      input.disabled = !showCardFields;
+    });
   }
 
   function handleSubmit(event) {
@@ -223,6 +226,12 @@ window.App.ready(function initCheckoutPage() {
     });
 
     if (hasErrors) {
+      const firstInvalidField = form.querySelector('.input-error, [aria-invalid="true"]');
+
+      if (firstInvalidField instanceof HTMLElement) {
+        firstInvalidField.focus();
+      }
+
       return;
     }
 

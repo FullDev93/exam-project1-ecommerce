@@ -111,6 +111,16 @@ window.App.ready(function initCartPage() {
     return image || 'https://via.placeholder.com/120x120?text=Product';
   }
 
+  function getItemImageAlt(item, title) {
+    const imageAlt = typeof item?.imageAlt === 'string' ? item.imageAlt.trim() : '';
+
+    if (imageAlt) {
+      return imageAlt;
+    }
+
+    return title ? `${title} product image` : 'Product image';
+  }
+
   function getItemTitle(item) {
     const title = typeof item?.title === 'string' ? item.title.trim() : '';
 
@@ -145,11 +155,11 @@ window.App.ready(function initCartPage() {
         const title = getItemTitle(item);
 
         return `
-          <article class="cart-item" data-cart-item>
+          <article class="cart-item" data-cart-item role="listitem">
             <img
               class="cart-item-image"
               src="${escapeHtml(getItemImage(item))}"
-              alt="${escapeHtml(title)}"
+              alt="${escapeHtml(getItemImageAlt(item, title))}"
               loading="lazy"
             />
 
@@ -158,7 +168,7 @@ window.App.ready(function initCartPage() {
               <p class="cart-item-price">Unit price: ${formatCurrency(unitPrice)}</p>
             </div>
 
-            <div class="cart-item-quantity" aria-label="Quantity controls">
+            <div class="cart-item-quantity" role="group" aria-label="Quantity controls for ${escapeHtml(title)}">
               <button
                 type="button"
                 class="cart-quantity-button"
@@ -168,7 +178,7 @@ window.App.ready(function initCartPage() {
               >
                 -
               </button>
-              <span class="cart-quantity-value" aria-live="polite">${quantity}</span>
+              <span class="cart-quantity-value" aria-live="polite" aria-atomic="true">${quantity}</span>
               <button
                 type="button"
                 class="cart-quantity-button"
@@ -187,6 +197,7 @@ window.App.ready(function initCartPage() {
               class="btn-secondary cart-remove-button"
               data-cart-action="remove"
               data-item-id="${escapeHtml(itemId)}"
+              aria-label="Remove ${escapeHtml(title)} from cart"
             >
               Remove
             </button>

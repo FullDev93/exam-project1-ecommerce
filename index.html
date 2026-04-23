@@ -31,7 +31,7 @@
 
             <div class="nav-logged-in" hidden>
               <span data-nav-username></span>
-              <a href="./cart/index.html" class="nav-cart">
+              <a href="./cart/index.html" class="nav-cart" aria-label="Cart">
                 Cart
                 <span class="badge" data-cart-count hidden></span>
               </a>
@@ -47,7 +47,8 @@
           <span class="loader-label">Loading featured products...</span>
         </div>
 
-        <section class="carousel" aria-label="Featured promotions">
+        <section class="carousel" aria-labelledby="featured-promotions-heading">
+          <h2 id="featured-promotions-heading" class="sr-only">Featured promotions</h2>
           <div class="carousel-slides" aria-live="polite">
             <article class="carousel-slide carousel-slide-summer is-active">
               <div class="carousel-content">
@@ -89,8 +90,13 @@
             <span aria-hidden="true">&#10095;</span>
           </button>
 
-          <div class="carousel-indicators" aria-label="Carousel indicators">
-            <button type="button" class="indicator active" aria-label="Go to slide 1"></button>
+          <div class="carousel-indicators" role="group" aria-label="Carousel indicators">
+            <button
+              type="button"
+              class="indicator active"
+              aria-label="Go to slide 1"
+              aria-current="true"
+            ></button>
             <button type="button" class="indicator" aria-label="Go to slide 2"></button>
             <button type="button" class="indicator" aria-label="Go to slide 3"></button>
           </div>

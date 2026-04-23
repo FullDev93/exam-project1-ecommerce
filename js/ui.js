@@ -51,6 +51,7 @@ function getCartBadge() {
   const existingBadge = document.querySelector('[data-cart-count]');
 
   if (existingBadge) {
+    existingBadge.setAttribute('aria-hidden', 'true');
     return existingBadge;
   }
 
@@ -63,7 +64,7 @@ function getCartBadge() {
   const badge = document.createElement('span');
   badge.className = 'badge';
   badge.setAttribute('data-cart-count', '');
-  badge.setAttribute('aria-live', 'polite');
+  badge.setAttribute('aria-hidden', 'true');
   badge.hidden = true;
   cartLink.appendChild(badge);
 
@@ -214,6 +215,7 @@ window.App.ui.setPageTitle = function setPageTitle(title) {
 window.App.ui.updateCartBadge = function updateCartBadge() {
   const storage = getStorage();
   const badge = getCartBadge();
+  const cartLink = getCartLink();
 
   if (!badge) {
     return;
@@ -225,6 +227,13 @@ window.App.ui.updateCartBadge = function updateCartBadge() {
 
   badge.textContent = count > 0 ? String(count) : '0';
   badge.hidden = count <= 0;
+
+  if (cartLink) {
+    cartLink.setAttribute(
+      'aria-label',
+      count > 0 ? `Cart, ${count} item${count === 1 ? '' : 's'}` : 'Cart',
+    );
+  }
 };
 
 window.App.ui.updateNavbar = function updateNavbar() {
