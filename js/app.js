@@ -33,9 +33,7 @@ document.addEventListener('DOMContentLoaded', function onAppReady() {
 
   if (typeof ui.updateNavbar === 'function') {
     ui.updateNavbar();
-  }
-
-  if (typeof ui.updateCartBadge === 'function') {
+  } else if (typeof ui.updateCartBadge === 'function') {
     ui.updateCartBadge();
   }
 });

@@ -9,6 +9,22 @@ function getStorage() {
   return window.App.storage && typeof window.App.storage === 'object' ? window.App.storage : null;
 }
 
+function normalizeCount(value) {
+  const parsedValue = Number(value);
+
+  if (!Number.isFinite(parsedValue) || parsedValue <= 0) {
+    return 0;
+  }
+
+  return Math.floor(parsedValue);
+}
+
+function getUserDisplayName(user) {
+  const name = typeof user?.name === 'string' ? user.name.trim() : '';
+
+  return name || 'Account';
+}
+
 function setVisibility(element, isVisible) {
   if (!(element instanceof Element)) {
     return;
@@ -203,17 +219,20 @@ window.App.ui.updateCartBadge = function updateCartBadge() {
     return;
   }
 
-  const count = storage && typeof storage.getCartCount === 'function' ? storage.getCartCount() : 0;
+  const rawCount =
+    storage && typeof storage.getCartCount === 'function' ? storage.getCartCount() : 0;
+  const count = normalizeCount(rawCount);
 
-  badge.textContent = String(count);
+  badge.textContent = count > 0 ? String(count) : '0';
   badge.hidden = count <= 0;
 };
 
 window.App.ui.updateNavbar = function updateNavbar() {
   const storage = getStorage();
-  const isLoggedIn =
-    storage && typeof storage.isLoggedIn === 'function' ? storage.isLoggedIn() : false;
   const user = storage && typeof storage.getUser === 'function' ? storage.getUser() : null;
+  const isLoggedIn =
+    storage && typeof storage.isLoggedIn === 'function' ? storage.isLoggedIn() : Boolean(user);
+  const displayName = getUserDisplayName(user);
 
   const nav = getSiteNav();
 
@@ -251,7 +270,7 @@ window.App.ui.updateNavbar = function updateNavbar() {
   }
 
   if (username) {
-    username.textContent = isLoggedIn ? user?.name || 'Account' : '';
+    username.textContent = isLoggedIn ? displayName : '';
   }
 
   if (logoutButton && logoutButton.dataset.uiLogoutBound !== 'true') {
