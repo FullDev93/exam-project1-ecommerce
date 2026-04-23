@@ -43,11 +43,25 @@
         </div>
       </header>
 
-      <main class="page-grid">
-        <section class="card">
-          <p class="page-accent">Success</p>
-          <h1 class="section-title">Success</h1>
-          <p class="section-copy">Show order confirmation details and next steps here.</p>
+      <main class="page-grid success-page">
+        <section class="card success-card">
+          <div class="success-badge" aria-hidden="true">
+            <span class="success-badge-icon">&#10003;</span>
+            <span class="success-badge-text">Order Confirmed</span>
+          </div>
+
+          <p class="page-accent">Purchase Complete</p>
+          <h1 class="section-title">Thank you for your purchase!</h1>
+          <p class="section-copy">
+            Your order has been placed successfully and is being prepared. We hope you enjoy your
+            new Mix Shope picks.
+          </p>
+
+          <div class="success-order-number" data-success-order-number hidden>
+            Order <strong data-order-number>MS-00000</strong>
+          </div>
+
+          <a href="../index.html" class="btn-primary success-continue-link">Continue Shopping</a>
         </section>
       </main>
 
