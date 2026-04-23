@@ -1,5 +1,5 @@
 window.App.ready(function initProductPage() {
-  window.App.initPage('product', 'Product | Mix Shope');
+  window.App.initPage('product', 'Mix Shope | Product');
 
   const productId = new URLSearchParams(window.location.search).get('id');
   const productContent = document.querySelector('[data-product-content]');
