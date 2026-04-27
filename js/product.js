@@ -10,6 +10,8 @@ window.App.ready(function initProductPage() {
   const shareButton = document.querySelector('[data-share-button]');
   const loginRequiredMessage = document.querySelector('[data-login-required-message]');
   const actionFeedback = document.querySelector('[data-product-action-feedback]');
+  const placeholderImage =
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 900'%3E%3Crect width='900' height='900' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' fill='%236b7280' font-family='Arial' font-size='44'%3EProduct%3C/text%3E%3C/svg%3E";
   let currentProduct = null;
   let addToCartResetTimer = null;
 
@@ -405,7 +407,7 @@ window.App.ready(function initProductPage() {
       }
     }
 
-    return 'https://via.placeholder.com/900x900?text=Product';
+    return placeholderImage;
   }
 
   function getProductImageAlt(product) {

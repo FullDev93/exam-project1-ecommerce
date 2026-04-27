@@ -7,6 +7,8 @@ window.App.ready(function initCartPage() {
   const cartEmpty = document.querySelector('[data-cart-empty]');
   const cartTotal = document.querySelector('[data-cart-total]');
   const clearCartButton = document.querySelector('[data-clear-cart]');
+  const placeholderImage =
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' fill='%236b7280' font-family='Arial' font-size='14'%3EProduct%3C/text%3E%3C/svg%3E";
 
   if (!cartItemsContainer || !cartContent || !cartSummary || !cartEmpty || !cartTotal) {
     return;
@@ -108,7 +110,7 @@ window.App.ready(function initCartPage() {
   function getItemImage(item) {
     const image = typeof item?.image === 'string' ? item.image.trim() : '';
 
-    return image || 'https://via.placeholder.com/120x120?text=Product';
+    return image || placeholderImage;
   }
 
   function getItemImageAlt(item, title) {
