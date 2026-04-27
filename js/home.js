@@ -72,7 +72,6 @@ window.App.ready(function initHomePage() {
         productGrid.appendChild(card);
       });
 
-      // --- Carousel (Issue #12) ---
       if (carouselSlides && items.length > 0) {
         buildCarousel(items.slice(0, 3));
       }

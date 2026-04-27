@@ -161,7 +161,6 @@ main {
   text-transform: uppercase;
 }
 
-.visually-hidden,
 .sr-only {
   position: absolute;
   width: 1px;

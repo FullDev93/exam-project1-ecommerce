@@ -15,7 +15,6 @@
   --color-gray-500: #64748b;
   --color-gray-700: #334155;
   --color-gray-950: #0f172a;
-  --color-success: #16a34a;
   --color-error: #dc2626;
   --color-warning: #f59e0b;
   --color-success-strong: #166534;
@@ -43,16 +42,10 @@
   /* ---- Supporting tones ---- */
   --color-success-soft: #effcf3;
   --color-error-soft: #fef2f2;
-  --color-warning-soft: #fffbeb;
   --color-disabled-text: var(--color-gray-500);
   --color-disabled-surface: var(--color-gray-200);
   --color-shadow: rgb(15 23 42 / 8%);
   --color-shadow-strong: rgb(15 23 42 / 12%);
-
-  /* ---- Legacy aliases for existing styles ---- */
-  --color-bg: var(--color-background);
-  --color-muted: var(--color-text-muted);
-  --color-accent: var(--color-primary);
 
   /* ---- Typography ---- */
   --font-heading: 'Poppins', sans-serif;
@@ -64,7 +57,6 @@
   --text-xl: 1.5rem;
   --text-2xl: 2rem;
   --text-3xl: 2.75rem;
-  --weight-normal: 400;
   --weight-medium: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
@@ -90,7 +82,6 @@
   /* ---- Shadows ---- */
   --shadow-sm: 0 10px 30px var(--color-shadow);
   --shadow-md: 0 18px 40px var(--color-shadow-strong);
-  --shadow-lg: 0 24px 56px var(--color-shadow-strong);
 
   /* ---- Motion ---- */
   --transition-fast: 160ms ease;
@@ -99,6 +90,5 @@
 
   /* ---- Layout ---- */
   --container-max-width: 1200px;
-  --max-width: var(--container-max-width);
   --header-height: 72px;
 }
