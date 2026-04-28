@@ -91,3 +91,7 @@ npm run lint:fix
 npm run lint:css
 npm run lint:css:fix
 ```
+
+## GitHub live demo
+
+https://fulldev93.github.io/exam-project1-ecommerce/
