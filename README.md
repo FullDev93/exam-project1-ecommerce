@@ -1,42 +1,86 @@
 # Mix Shope
 
-Mix Shope is a vanilla front-end e-commerce project that provides the base structure for a small storefront experience. The project includes separate pages for browsing, cart flow, checkout, authentication, product details, and order success, with shared CSS and JavaScript assets organized for straightforward development and extension.
+Mix Shope is a responsive e-commerce front-end built with Vanilla JavaScript, HTML, and CSS. It uses the Noroff Online Shop API to load product data and supports the main shopping flow: browse products, view product details, register, log in, add products to the cart, complete checkout, and view a success page.
 
-## Project Overview
+Live Demo: TODO
 
-The repository is set up as a static multi-page storefront. It uses reusable CSS layers, page-specific JavaScript entry files, and lightweight project tooling for formatting and linting.
+Repository: https://github.com/FullDev93/exam-project1-ecommerce
 
-## Pages
+## Features
 
-- [Home](./index.html)
-- [Cart](./cart/index.html)
-- [Checkout](./checkout/index.html)
-- [Product](./product/index.html)
-- [Success](./success/index.html)
-- [Login](./account/login.html)
-- [Register](./account/register.html)
+- Responsive homepage with carousel
+- Product grid from API
+- Product details page
+- Register and login forms
+- Token-based login state
+- Add to cart for logged-in users
+- LocalStorage cart
+- Cart quantity controls
+- Checkout form
+- Success page
+- Loading, error, and empty states
+- Accessibility and SEO basics
 
-## How To Run
+## Tech Stack
 
-Because this is a vanilla multi-page project, you can run it in either of these ways:
+- HTML
+- CSS
+- Vanilla JavaScript
+- Noroff API
+- Figma for design
+- GitHub Projects for planning
+- GitHub Pages for deployment
 
-### Option 1: Open directly
+## Pages Overview
 
-Open `index.html` in the browser.
+- Home: `index.html`
+- Product details: `product/index.html`
+- Login: `account/login.html`
+- Register: `account/register.html`
+- Cart: `cart/index.html`
+- Checkout: `checkout/index.html`
+- Success: `success/index.html`
 
-### Option 2: Run with a local static server
+## API Reference
 
-If you prefer local hosting, use any static server such as VS Code Live Server.
+- Online Shop API: https://docs.noroff.dev/docs/v2/basic/online-shop
+- Authentication API: https://docs.noroff.dev/docs/v2/authentication
+- Swagger: https://v2.api.noroff.dev/docs/static/index.html
 
-Example with VS Code:
+## How To Run Locally
 
-1. Open the project folder in VS Code.
-2. Start a local server with Live Server or a similar extension.
-3. Open the served `index.html` page.
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/FullDev93/exam-project1-ecommerce.git
+   ```
+
+2. Open the project folder.
+3. Open `index.html` in the browser.
+
+You can also use a local development server if available, such as VS Code Live Server.
+
+## Project Planning
+
+GitHub Projects was used for Kanban and Roadmap planning during the project. Tasks were organized into issues and tracked through the project board.
+
+Project Board: TODO
+
+## Design
+
+Figma was used for the style guide and high-fidelity prototypes before and during development.
+
+Figma Design: TODO
+
+## Credits
+
+- Noroff API for product and authentication endpoints
+- Google Fonts for the Inter and Poppins font families
+- Unsplash for placeholder and carousel images
 
 ## Development Tooling
 
-After installing dependencies, these commands are available:
+The project includes formatting and linting tools for maintaining code quality.
 
 ```bash
 npm install
@@ -47,56 +91,3 @@ npm run lint:fix
 npm run lint:css
 npm run lint:css:fix
 ```
-
-## Folder Structure
-
-```text
-.
-|-- account/
-|   |-- login.html
-|   `-- register.html
-|-- assets/
-|   |-- icons/
-|   `-- images/
-|-- cart/
-|   `-- index.html
-|-- checkout/
-|   `-- index.html
-|-- css/
-|   |-- base.css
-|   |-- components.css
-|   |-- pages.css
-|   `-- variables.css
-|-- js/
-|   |-- api.js
-|   |-- app.js
-|   |-- cart.js
-|   |-- checkout.js
-|   |-- config.js
-|   |-- home.js
-|   |-- login.js
-|   |-- product.js
-|   |-- register.js
-|   |-- storage.js
-|   |-- success.js
-|   |-- ui.js
-|   `-- validation.js
-|-- product/
-|   `-- index.html
-|-- success/
-|   `-- index.html
-|-- index.html
-|-- package.json
-`-- README.md
-```
-
-## Technologies Used
-
-- HTML5 for the page structure
-- CSS3 for layout, components, and shared design tokens
-- Vanilla JavaScript for page logic and shared utilities
-- npm for project tooling and dependency management
-- Prettier for code formatting
-- ESLint for JavaScript linting
-- Stylelint for CSS linting
-- EditorConfig and Git attributes for consistent line endings and editor behavior
