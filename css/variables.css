@@ -46,6 +46,20 @@
   --color-disabled-surface: var(--color-gray-200);
   --color-shadow: rgb(15 23 42 / 8%);
   --color-shadow-strong: rgb(15 23 42 / 12%);
+  --color-overlay-dark-mid: rgb(15 23 42 / 15%);
+  --color-overlay-dark-soft: rgb(15 23 42 / 30%);
+  --color-overlay-dark-strong: rgb(15 23 42 / 78%);
+  --color-overlay-blue-soft: rgb(37 99 235 / 18%);
+  --color-overlay-white-14: rgb(255 255 255 / 14%);
+  --color-overlay-white-28: rgb(255 255 255 / 28%);
+  --color-overlay-white-30: rgb(255 255 255 / 30%);
+  --color-overlay-white-40: rgb(255 255 255 / 40%);
+  --color-overlay-white-45: rgb(255 255 255 / 45%);
+  --color-overlay-white-84: rgb(255 255 255 / 84%);
+  --color-overlay-white-88: rgb(255 255 255 / 88%);
+  --color-overlay-white-92: rgb(255 255 255 / 92%);
+  --color-overlay-white-96: rgb(255 255 255 / 96%);
+  --color-success-tint: #eefbf3;
 
   /* ---- Typography ---- */
   --font-heading: 'Poppins', sans-serif;

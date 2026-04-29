@@ -15,10 +15,11 @@
   position: relative;
   min-height: 24rem;
   overflow: hidden;
-  border: 1px solid rgb(255 255 255 / 30%);
+  border: 1px solid var(--color-overlay-white-30);
   border-radius: var(--radius-lg);
   background:
-    linear-gradient(135deg, rgb(15 23 42 / 8%), rgb(37 99 235 / 18%)), var(--color-surface);
+    linear-gradient(135deg, var(--color-shadow), var(--color-overlay-blue-soft)),
+    var(--color-surface);
   box-shadow: var(--shadow-md);
 }
 
@@ -34,7 +35,8 @@
   align-items: center;
   padding: var(--space-2xl);
   background-image:
-    linear-gradient(90deg, rgb(15 23 42 / 78%), rgb(15 23 42 / 30%)), var(--slide-image);
+    linear-gradient(90deg, var(--color-overlay-dark-strong), var(--color-overlay-dark-soft)),
+    var(--slide-image);
   background-position: center;
   background-size: cover;
   opacity: 0;
@@ -63,7 +65,7 @@
 .carousel-content p {
   max-width: 32rem;
   margin-bottom: 0;
-  color: rgb(255 255 255 / 84%);
+  color: var(--color-overlay-white-84);
   font-size: var(--text-lg);
 }
 
@@ -72,7 +74,7 @@
   margin-bottom: var(--space-md);
   padding: 0.45rem 0.8rem;
   border-radius: var(--radius-full);
-  background-color: rgb(255 255 255 / 14%);
+  background-color: var(--color-overlay-white-14);
   color: var(--color-white);
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
@@ -89,9 +91,9 @@
   justify-content: center;
   width: 3rem;
   height: 3rem;
-  border: 1px solid rgb(255 255 255 / 28%);
+  border: 1px solid var(--color-overlay-white-28);
   border-radius: var(--radius-full);
-  background-color: rgb(255 255 255 / 88%);
+  background-color: var(--color-overlay-white-88);
   color: var(--color-heading);
   box-shadow: var(--shadow-sm);
   transform: translateY(-50%);
@@ -135,7 +137,7 @@
   height: 0.8rem;
   border: 0;
   border-radius: var(--radius-full);
-  background-color: rgb(255 255 255 / 45%);
+  background-color: var(--color-overlay-white-45);
   transition:
     transform var(--transition-fast),
     background-color var(--transition-fast);
@@ -301,7 +303,8 @@
   margin-top: auto;
   padding-block: var(--space-lg);
   background:
-    linear-gradient(180deg, rgb(255 255 255 / 40%), rgb(255 255 255 / 96%)), var(--color-gray-100);
+    linear-gradient(180deg, var(--color-overlay-white-40), var(--color-overlay-white-96)),
+    var(--color-gray-100);
   border-top: 1px solid var(--color-border);
 }
 
@@ -838,13 +841,17 @@
 
   .site-nav > a {
     padding-inline: var(--space-xs);
-    min-height: 2rem;
+    min-height: 2.75rem;
     align-self: center;
   }
 
   .site-nav a {
     padding-inline: var(--space-xs);
-    min-height: 2rem;
+    min-height: 2.75rem;
+  }
+
+  [data-nav-logout] {
+    min-height: 2.75rem;
   }
 
   .nav-logged-out,
@@ -909,7 +916,7 @@
   border-radius: calc(var(--radius-lg) - 0.35rem);
   background:
     radial-gradient(circle at top left, var(--color-secondary-soft), transparent 38%),
-    linear-gradient(160deg, var(--color-gray-100), #eefbf3);
+    linear-gradient(160deg, var(--color-gray-100), var(--color-success-tint));
 }
 
 .product-image-badge {
@@ -921,7 +928,7 @@
   align-items: center;
   padding: 0.55rem 0.85rem;
   border-radius: var(--radius-full);
-  background-color: rgb(255 255 255 / 92%);
+  background-color: var(--color-overlay-white-92);
   color: var(--color-secondary-dark);
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);

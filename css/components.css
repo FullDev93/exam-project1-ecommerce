@@ -191,7 +191,7 @@
   width: 2rem;
   height: 2rem;
   margin-top: 0.75rem;
-  border-color: rgb(15 23 42 / 15%);
+  border-color: var(--color-overlay-dark-mid);
   border-top-color: var(--color-heading);
 }
 

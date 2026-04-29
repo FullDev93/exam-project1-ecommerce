@@ -1,5 +1,9 @@
 # Mix Shope
 
+## Preview
+
+![Mix Shope homepage preview](assets/images/homepage-preview.png)
+
 Mix Shope is a responsive e-commerce front-end built with Vanilla JavaScript, HTML, and CSS. It uses the Noroff Online Shop API to load product data and supports the main shopping flow: browse products, view product details, register, log in, add products to the cart, complete checkout, and view a success page.
 
 Live Demo: https://fulldev93.github.io/exam-project1-ecommerce/
