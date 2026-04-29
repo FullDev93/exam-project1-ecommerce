@@ -1,3 +1,9 @@
+## Academic Honesty Statement
+
+I used AI as a learning, planning, debugging, and review assistant during this project. I did not use AI to blindly generate and submit core application logic. For restricted areas such as API fetching, cart state, authentication, and dynamic product rendering, I used AI to help me understand concepts, review my approach, debug errors, and check edge cases.
+
+All code included in the final project was reviewed, tested, and adjusted by me. I am responsible for the final implementation and can explain the code and user flows line by line.
+
 # AI Log
 
 - 2026-04-03:

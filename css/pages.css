@@ -42,18 +42,6 @@
   transition: opacity var(--transition-slow);
 }
 
-.carousel-slide-summer {
-  --slide-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1200');
-}
-
-.carousel-slide-sale {
-  --slide-image: url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80&w=1200');
-}
-
-.carousel-slide-essentials {
-  --slide-image: url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=1200');
-}
-
 .carousel-slide.is-active {
   opacity: 1;
   pointer-events: auto;
