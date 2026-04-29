@@ -2,7 +2,7 @@
 
 Mix Shope is a responsive e-commerce front-end built with Vanilla JavaScript, HTML, and CSS. It uses the Noroff Online Shop API to load product data and supports the main shopping flow: browse products, view product details, register, log in, add products to the cart, complete checkout, and view a success page.
 
-Live Demo: TODO
+Live Demo: https://fulldev93.github.io/exam-project1-ecommerce/
 
 Repository: https://github.com/FullDev93/exam-project1-ecommerce
 
@@ -64,19 +64,13 @@ You can also use a local development server if available, such as VS Code Live S
 
 GitHub Projects was used for Kanban and Roadmap planning during the project. Tasks were organized into issues and tracked through the project board.
 
-Project Board: TODO
+Project Board: https://github.com/users/FullDev93/projects/6
 
 ## Design
 
 Figma was used for the style guide and high-fidelity prototypes before and during development.
 
-Figma Design: TODO
-
-## Credits
-
-- Noroff API for product and authentication endpoints
-- Google Fonts for the Inter and Poppins font families
-- Unsplash for placeholder and carousel images
+Figma Design: https://www.figma.com/design/39APa6DduEagh39jowccQS/Mix-Shope?node-id=0-1&t=HslqPqee9vM15PtJ-1
 
 ## Development Tooling
 
@@ -91,7 +85,3 @@ npm run lint:fix
 npm run lint:css
 npm run lint:css:fix
 ```
-
-## GitHub live demo
-
-https://fulldev93.github.io/exam-project1-ecommerce/
