@@ -219,6 +219,7 @@
 }
 
 .product-image-wrapper {
+  position: relative;
   overflow: hidden;
   aspect-ratio: 1 / 1;
   background-color: var(--color-gray-100);
@@ -233,6 +234,24 @@
 
 .product-card:hover .product-image-wrapper img {
   transform: scale(1.04);
+}
+
+.product-discount-badge {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  max-width: calc(100% - (var(--space-md) * 2));
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-overlay-white-92);
+  color: var(--color-secondary-dark);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+  box-shadow: var(--shadow-sm);
 }
 
 .product-info {

@@ -33,6 +33,10 @@ window.App.ready(function initHomePage() {
         var title = getProductTitle(product);
         var price = getProductPrice(product);
         var discountedPrice = getProductDiscountedPrice(product);
+        var hasDiscount =
+          typeof discountedPrice === 'number' &&
+          typeof price === 'number' &&
+          discountedPrice < price;
         var card = document.createElement('a');
         card.className = 'product-card';
         card.href = './product/index.html?id=' + encodeURIComponent(product.id);
@@ -46,14 +50,16 @@ window.App.ready(function initHomePage() {
         imageWrapper.className = 'product-image-wrapper';
         imageWrapper.appendChild(img);
 
+        if (hasDiscount) {
+          var discountBadge = document.createElement('span');
+          discountBadge.className = 'product-discount-badge';
+          discountBadge.textContent = getDiscountBadgeText(price, discountedPrice);
+          imageWrapper.appendChild(discountBadge);
+        }
+
         var titleEl = document.createElement('h3');
         titleEl.className = 'product-title';
         titleEl.textContent = title;
-
-        var hasDiscount =
-          typeof discountedPrice === 'number' &&
-          typeof price === 'number' &&
-          discountedPrice < price;
 
         var currentPriceEl = document.createElement('span');
         currentPriceEl.className = 'price-current';
@@ -242,6 +248,20 @@ window.App.ready(function initHomePage() {
 
   function getProductDiscountedPrice(product) {
     return toNumber(product?.discountedPrice);
+  }
+
+  function getDiscountBadgeText(price, discountedPrice) {
+    var savingsPercentage = getSavingsPercentage(price, discountedPrice);
+
+    return savingsPercentage > 0 ? 'Save ' + savingsPercentage + '%' : 'Sale';
+  }
+
+  function getSavingsPercentage(price, discountedPrice) {
+    if (typeof price !== 'number' || typeof discountedPrice !== 'number' || price <= 0) {
+      return 0;
+    }
+
+    return Math.round(((price - discountedPrice) / price) * 100);
   }
 
   function toNumber(value) {
